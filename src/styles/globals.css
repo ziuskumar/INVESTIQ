@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Import design tokens ─────────────────────────────────── */
+@import './token.css';
+
+/* ── Google Fonts: Inter Variable (substitute for Interphases Pro) ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Base reset ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  color: #261b07;
+  background-color: #f8f7f5;
+}
+
+/* ── Scrollbar styling ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f7f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #d5d2cd;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aca89f;
+}
+
+/* ── Selection styling ─────────────────────────────────────── */
+::selection {
+  background-color: #f8da9d;
+  color: #261b07;
+}
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-amber {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(249, 166, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(249, 166, 0, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes typing-dot {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Utility animation classes ─────────────────────────────── */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-out both;
+}
+
+/* ── Prose overrides for markdown ───────────────────────────── */
+.prose-runway h1,
+.prose-runway h2,
+.prose-runway h3 {
+  color: #261b07;
+  font-weight: 584;
+  letter-spacing: -0.31px;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose-runway h2 {
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.prose-runway h3 {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.prose-runway p {
+  color: #61594a;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0.75em;
+}
+
+.prose-runway ul,
+.prose-runway ol {
+  color: #61594a;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-left: 1.25em;
+  margin-bottom: 0.75em;
+}
+
+.prose-runway li {
+  margin-bottom: 0.25em;
+}
+
+.prose-runway strong {
+  color: #261b07;
+  font-weight: 584;
+}
+
+.prose-runway code {
+  background: #f8f7f5;
+  color: #61594a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.prose-runway a {
+  color: #e89b01;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-runway a:hover {
+  color: #f9a600;
+}
+
+.prose-runway blockquote {
+  border-left: 3px solid #f9a600;
+  padding-left: 16px;
+  color: #8f897e;
+  font-style: italic;
+  margin: 1em 0;
+}
