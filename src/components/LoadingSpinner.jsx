@@ -1,9 +1,5 @@
 import React from 'react';
 
-/**
- * Simple spinner using Runway design tokens.
- * Uses amber signal color for the animated ring.
- */
 const LoadingSpinner = ({ size = 20 }) => (
   <div
     style={{

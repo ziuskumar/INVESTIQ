@@ -1,10 +1,5 @@
 import React from 'react';
 
-/**
- * Top Announcement Banner — Runway spec:
- * Espresso (#261b07) background, white text, centered.
- * 14px weight 400. Full-bleed strip above the main header.
- */
 const AnnouncementBanner = () => {
   return (
     <div

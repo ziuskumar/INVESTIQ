@@ -3,10 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { HistoryContext } from '../context/HistoryContext';
 
-/**
- * Dashboard Page — Runway style analytics overview.
- * Shows KPI metric tiles, research history summary, and portfolio breakdown.
- */
 export default function DashboardPage() {
   const { entries } = useContext(HistoryContext);
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -16,13 +12,9 @@ export default function DashboardPage() {
   const totalReports = entries.length;
   const investRate = totalReports > 0 ? Math.round((investCount / totalReports) * 100) : 0;
 
-  // Get unique companies
   const uniqueCompanies = [...new Set(entries.map((e) => e.company))];
-
-  // Last 5 entries
   const recentEntries = entries.slice(0, 5);
 
-  // Mock sector data for chart
   const sectors = [
     { name: 'Technology', pct: 42, color: '#f9a600' },
     { name: 'Healthcare', pct: 18, color: '#e89b01' },
@@ -94,7 +86,6 @@ export default function DashboardPage() {
       </Head>
 
       <div style={{ minHeight: '100vh', backgroundColor: '#f8f7f5', display: 'flex', flexDirection: 'column' }}>
-        {/* Announcement Banner */}
         <div style={{ backgroundColor: '#261b07', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '14px', fontWeight: 400, letterSpacing: '-0.14px' }}>
           📊 Portfolio Analytics Dashboard
           <span style={{ display: 'inline-block', backgroundColor: '#f9a600', color: '#261b07', padding: '2px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 492, marginLeft: '8px', letterSpacing: '0.6px' }}>
@@ -102,10 +93,9 @@ export default function DashboardPage() {
           </span>
         </div>
 
-        {/* Header */}
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 32px', borderBottom: '1px solid #e3dfd5', backgroundColor: '#ffffff', position: 'sticky', top: 0, zIndex: 50 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'linear-gradient(135deg, #f9a600 0%, #e89b01 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0px 2px 4px 0px rgba(255,255,255,0.56), 0px 4px 8px 0px rgba(38,27,7,0.06), 0px 1px 2px 0px rgba(38,27,7,0.36)' }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'linear-gradient(135deg, #f9a600 0%, #e89b01 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0px 2px 4px 0px rgba(255,255,255,0.56), 0px 4px 8px 0px rgba(38, 27, 7, 0.06), 0px 1px 2px 0px rgba(38, 27, 7, 0.36)' }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#261b07" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
                 <path d="M2 17l10 5 10-5" />
@@ -122,15 +112,13 @@ export default function DashboardPage() {
             >
               Research
             </Link>
-            <span style={{ backgroundColor: '#f9a600', color: '#261b07', borderRadius: '8px', padding: '6px 12px', fontSize: '14px', fontWeight: 492, boxShadow: 'inset 0px 2px 4px 0px rgba(255,255,255,0.56), 0px 4px 8px 0px rgba(38,27,7,0.06), 0px 1px 2px 0px rgba(38,27,7,0.36)' }}>
+            <span style={{ backgroundColor: '#f9a600', color: '#261b07', borderRadius: '8px', padding: '6px 12px', fontSize: '14px', fontWeight: 492, boxShadow: 'inset 0px 2px 4px 0px rgba(255,255,255,0.56), 0px 4px 8px 0px rgba(38, 27, 7, 0.06), 0px 1px 2px 0px rgba(38, 27, 7, 0.36)' }}>
               Dashboard
             </span>
           </nav>
         </header>
 
-        {/* Main Content */}
         <main style={{ flex: 1, maxWidth: '1200px', width: '100%', margin: '0 auto', padding: '32px' }}>
-          {/* Page Title */}
           <div className="animate-fade-in-up" style={{ marginBottom: '32px' }}>
             <h1 style={{ fontSize: '36px', fontWeight: 492, color: '#261b07', letterSpacing: '-0.61px', lineHeight: 1.13, marginBottom: '8px' }}>
               Analytics Dashboard
@@ -140,7 +128,6 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* Metric Tiles Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '32px' }}>
             {metrics.map((m, idx) => (
               <div
@@ -183,7 +170,6 @@ export default function DashboardPage() {
                   {m.delta}
                 </span>
 
-                {/* Mini chart line */}
                 <div style={{ marginTop: '16px', height: '32px', position: 'relative', overflow: 'hidden', borderRadius: '4px' }}>
                   <svg width="100%" height="32" viewBox="0 0 200 32" preserveAspectRatio="none">
                     <defs>
@@ -213,9 +199,7 @@ export default function DashboardPage() {
             ))}
           </div>
 
-          {/* Two-column section: Sector Breakdown + Recent Activity */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px' }}>
-            {/* Sector Breakdown Card */}
             <div
               className="animate-fade-in-up"
               style={{
@@ -237,7 +221,6 @@ export default function DashboardPage() {
                 </h2>
               </div>
 
-              {/* Horizontal bar chart */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {sectors.map((s) => (
                   <div key={s.name}>
@@ -261,7 +244,6 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Recent Activity Card */}
             <div
               className="animate-fade-in-up"
               style={{
@@ -356,7 +338,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Performance Overview Card — full width */}
           <div
             className="animate-fade-in-up"
             style={{
@@ -369,7 +350,7 @@ export default function DashboardPage() {
               marginBottom: '32px',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifycontent: 'space-between', marginBottom: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#261b07" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -390,7 +371,6 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Chart area */}
             <div style={{ height: '200px', position: 'relative', overflow: 'hidden' }}>
               <svg width="100%" height="200" viewBox="0 0 800 200" preserveAspectRatio="none">
                 <defs>
@@ -399,11 +379,9 @@ export default function DashboardPage() {
                     <stop offset="100%" stopColor="#f9a600" stopOpacity="0" />
                   </linearGradient>
                 </defs>
-                {/* Grid lines */}
                 {[0, 1, 2, 3, 4].map((i) => (
                   <line key={i} x1="0" y1={i * 50} x2="800" y2={i * 50} stroke="#f8f7f5" strokeWidth="1" />
                 ))}
-                {/* Chart line */}
                 <path
                   d="M0,160 C50,140 100,120 150,100 S250,60 300,80 S400,120 450,90 S550,40 600,50 S700,70 750,30 L800,20"
                   fill="none"
@@ -412,12 +390,10 @@ export default function DashboardPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-                {/* Area fill */}
                 <path
                   d="M0,160 C50,140 100,120 150,100 S250,60 300,80 S400,120 450,90 S550,40 600,50 S700,70 750,30 L800,20 V200 H0 Z"
                   fill="url(#chart-grad)"
                 />
-                {/* Data dots */}
                 {[
                   [0, 160], [150, 100], [300, 80], [450, 90], [600, 50], [750, 30], [800, 20]
                 ].map(([cx, cy], i) => (
@@ -425,7 +401,6 @@ export default function DashboardPage() {
                 ))}
               </svg>
 
-              {/* Y-axis labels */}
               <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0 8px' }}>
                 {['100%', '75%', '50%', '25%', '0%'].map((l) => (
                   <span key={l} style={{ fontSize: '11px', color: '#aca89f', letterSpacing: '0.6px' }}>{l}</span>
@@ -433,7 +408,6 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* X-axis labels */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', paddingLeft: '40px' }}>
               {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
                 <span key={m} style={{ fontSize: '11px', color: '#aca89f', letterSpacing: '0.6px' }}>{m}</span>
@@ -441,7 +415,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Quick Actions */}
           <div
             className="animate-fade-in-up"
             style={{
@@ -451,7 +424,6 @@ export default function DashboardPage() {
               animationDelay: '0.45s',
             }}
           >
-            {/* New Research */}
             <Link href="/" style={{ textDecoration: 'none' }}>
               <div style={{
                 backgroundColor: '#ffffff',
@@ -476,7 +448,6 @@ export default function DashboardPage() {
               </div>
             </Link>
 
-            {/* API Settings */}
             <div style={{
               backgroundColor: '#ffffff',
               border: '1px solid #e3dfd5',
@@ -499,7 +470,6 @@ export default function DashboardPage() {
               <p style={{ fontSize: '14px', color: '#61594a', letterSpacing: '-0.14px' }}>Configure OpenAI & Finnhub keys</p>
             </div>
 
-            {/* Export */}
             <div style={{
               backgroundColor: '#ffffff',
               border: '1px solid #e3dfd5',
@@ -525,7 +495,6 @@ export default function DashboardPage() {
           </div>
         </main>
 
-        {/* Footer */}
         <footer style={{ borderTop: '1px solid #e3dfd5', padding: '24px 32px', textAlign: 'center' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: '12px', color: '#8f897e', letterSpacing: '0.6px' }}>InvestIQ — AI Investment Research Dashboard</span>

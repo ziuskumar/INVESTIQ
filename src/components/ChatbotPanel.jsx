@@ -3,23 +3,15 @@ import { HistoryContext } from '../context/HistoryContext';
 import LoadingSpinner from './LoadingSpinner';
 import ReactMarkdown from 'react-markdown';
 
-/**
- * AI Chat Panel — Runway spec:
- * White surface, 8px radius, subtle Linen border.
- * Input field at bottom: 8px radius, 1px Linen border.
- * Warm shadow matching dashboard cards.
- * Renders a highly detailed, interactive, tabbed report.
- */
 const ChatbotPanel = () => {
   const [company, setCompany] = useState('');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('summary'); // 'summary' or 'details'
+  const [activeTab, setActiveTab] = useState('summary');
   const { addEntry } = useContext(HistoryContext);
   const resultRef = useRef(null);
 
-  // Auto-scroll to result when it appears
   useEffect(() => {
     if (response && resultRef.current) {
       resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -48,7 +40,6 @@ const ChatbotPanel = () => {
         decision: data.decision,
         reasoning: data.detailedReasoning || data.reasoning,
         timestamp: new Date().toISOString(),
-        // Add extra fields for the interactive report in history
         confidenceScore: data.confidenceScore,
         summary: data.summary,
         strengths: data.strengths,
@@ -81,7 +72,6 @@ const ChatbotPanel = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Panel Header */}
       <div
         style={{
           padding: '20px 24px',
@@ -91,7 +81,6 @@ const ChatbotPanel = () => {
           gap: '12px',
         }}
       >
-        {/* AI Avatar */}
         <div
           style={{
             width: '36px',
@@ -138,7 +127,6 @@ const ChatbotPanel = () => {
         </div>
       </div>
 
-      {/* Content area */}
       <div
         style={{
           flex: 1,
@@ -146,7 +134,6 @@ const ChatbotPanel = () => {
           padding: '24px',
         }}
       >
-        {/* Welcome state */}
         {!response && !loading && !error && (
           <div
             className="animate-fade-in"
@@ -203,7 +190,6 @@ const ChatbotPanel = () => {
               Enter a company name below. Our AI will analyze real-time data, news sentiment, and fundamentals to generate an interactive, detailed investment report.
             </p>
 
-            {/* Quick action chips */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
               {['Apple', 'Tesla', 'Microsoft', 'Google'].map((name) => (
                 <button
@@ -239,7 +225,6 @@ const ChatbotPanel = () => {
           </div>
         )}
 
-        {/* Loading state */}
         {loading && (
           <div
             className="animate-fade-in"
@@ -261,7 +246,6 @@ const ChatbotPanel = () => {
                 Fetching market data & compiling report
               </p>
             </div>
-            {/* Typing indicator dots */}
             <div style={{ display: 'flex', gap: '4px' }}>
               {[0, 1, 2].map((i) => (
                 <div
@@ -279,7 +263,6 @@ const ChatbotPanel = () => {
           </div>
         )}
 
-        {/* Error state */}
         {error && (
           <div
             className="animate-fade-in-up"
@@ -304,11 +287,8 @@ const ChatbotPanel = () => {
           </div>
         )}
 
-        {/* Result */}
         {response && !loading && (
           <div ref={resultRef} className="animate-fade-in-up">
-            
-            {/* Overview / Decision Block */}
             <div
               style={{
                 display: 'flex',
@@ -378,7 +358,6 @@ const ChatbotPanel = () => {
                 </div>
               </div>
 
-              {/* Confidence Score Badge */}
               {isInteractiveReport && (
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '20px', fontWeight: 584, color: '#261b07', letterSpacing: '-0.22px' }}>
@@ -391,7 +370,6 @@ const ChatbotPanel = () => {
               )}
             </div>
 
-            {/* Interactive Tabs Header */}
             {isInteractiveReport && (
               <div
                 style={{
@@ -425,11 +403,8 @@ const ChatbotPanel = () => {
               </div>
             )}
 
-            {/* TAB CONTENT: Summary */}
             {(!isInteractiveReport || activeTab === 'summary') && (
               <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                
-                {/* Executive Summary */}
                 {response.summary && (
                   <div
                     style={{
@@ -448,7 +423,6 @@ const ChatbotPanel = () => {
                   </div>
                 )}
 
-                {/* News Sentiment & Info Grid */}
                 {isInteractiveReport && (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div style={{ padding: '16px', border: '1px solid #e3dfd5', borderRadius: '8px' }}>
@@ -492,10 +466,8 @@ const ChatbotPanel = () => {
                   </div>
                 )}
 
-                {/* Strengths & Risks side-by-side card grid */}
                 {isInteractiveReport && (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                    {/* Strengths */}
                     <div
                       style={{
                         padding: '20px',
@@ -505,7 +477,7 @@ const ChatbotPanel = () => {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#f8da9d', display: 'flex', alignItems: 'center', justifycontent: 'center' }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#f8da9d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#261b07" strokeWidth="2.5">
                             <polyline points="20 6 9 17 4 12" />
                           </svg>
@@ -523,7 +495,6 @@ const ChatbotPanel = () => {
                       </ul>
                     </div>
 
-                    {/* Risks */}
                     <div
                       style={{
                         padding: '20px',
@@ -533,7 +504,7 @@ const ChatbotPanel = () => {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(240, 98, 79, 0.1)', display: 'flex', alignItems: 'center', justifycontent: 'center' }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'rgba(240, 98, 79, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0624f" strokeWidth="2.5">
                             <line x1="18" y1="6" x2="6" y2="18" />
                             <line x1="6" y1="6" x2="18" y2="18" />
@@ -554,7 +525,6 @@ const ChatbotPanel = () => {
                   </div>
                 )}
 
-                {/* Markdown Reasoning (For backward compatibility when simple report selected) */}
                 {!isInteractiveReport && (
                   <div
                     className="prose-runway"
@@ -580,7 +550,6 @@ const ChatbotPanel = () => {
               </div>
             )}
 
-            {/* TAB CONTENT: Detailed Report */}
             {isInteractiveReport && activeTab === 'details' && (
               <div
                 className="prose-runway animate-fade-in"
@@ -607,7 +576,6 @@ const ChatbotPanel = () => {
         )}
       </div>
 
-      {/* Input form */}
       <div
         style={{
           padding: '16px 24px',

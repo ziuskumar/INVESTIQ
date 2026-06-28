@@ -2,11 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-/**
- * Navigation Header — Runway style
- * Left-aligned wordmark, right-aligned nav with Research/Dashboard links.
- * 1px Linen bottom border, full-width, sticky.
- */
 const NavigationHeader = () => {
   return (
     <>
@@ -30,7 +25,6 @@ const NavigationHeader = () => {
           zIndex: 50,
         }}
       >
-        {/* Wordmark */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div
             style={{
@@ -63,9 +57,7 @@ const NavigationHeader = () => {
           </span>
         </div>
 
-        {/* Right side nav items */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Active: Research */}
           <span
             style={{
               backgroundColor: '#f9a600',
@@ -80,7 +72,6 @@ const NavigationHeader = () => {
             Research
           </span>
 
-          {/* Dashboard link */}
           <Link
             href="/dashboard"
             style={{

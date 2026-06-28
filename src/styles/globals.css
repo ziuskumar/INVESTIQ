@@ -2,13 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Import design tokens ─────────────────────────────────── */
 @import './token.css';
-
-/* ── Google Fonts: Inter Variable (substitute for Interphases Pro) ── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ── Base reset ────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -30,7 +26,6 @@ body {
   background-color: #f8f7f5;
 }
 
-/* ── Scrollbar styling ─────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -45,13 +40,11 @@ body {
   background: #aca89f;
 }
 
-/* ── Selection styling ─────────────────────────────────────── */
 ::selection {
   background-color: #f8da9d;
   color: #261b07;
 }
 
-/* ── Animations ────────────────────────────────────────────── */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -113,7 +106,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* ── Utility animation classes ─────────────────────────────── */
 .animate-fade-in-up {
   animation: fadeInUp 0.5s ease-out both;
 }
@@ -130,7 +122,6 @@ body {
   animation: slideInRight 0.5s ease-out both;
 }
 
-/* ── Prose overrides for markdown ───────────────────────────── */
 .prose-runway h1,
 .prose-runway h2,
 .prose-runway h3 {

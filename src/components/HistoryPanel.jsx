@@ -1,11 +1,6 @@
 import React, { useContext } from 'react';
 import { HistoryContext } from '../context/HistoryContext';
 
-/**
- * Research History Panel — Runway Dashboard Card spec:
- * White (#fff) surface on Cream Canvas, 8px radius, 1px Linen Border,
- * 32px padding, warm shadow. Scrollable list of past research entries.
- */
 const HistoryPanel = () => {
   const { entries, clearHistory } = useContext(HistoryContext);
 
@@ -24,7 +19,6 @@ const HistoryPanel = () => {
         flexDirection: 'column',
       }}
     >
-      {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#261b07" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -67,7 +61,6 @@ const HistoryPanel = () => {
         )}
       </div>
 
-      {/* Entries */}
       <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
         {entries.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px 16px' }}>
@@ -163,7 +156,6 @@ const HistoryPanel = () => {
         )}
       </div>
 
-      {/* Footer stat */}
       {entries.length > 0 && (
         <div
           style={{

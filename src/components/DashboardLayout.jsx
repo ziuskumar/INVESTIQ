@@ -4,12 +4,6 @@ import AnnouncementBanner from './AnnouncementBanner';
 import HistoryPanel from './HistoryPanel';
 import ChatbotPanel from './ChatbotPanel';
 
-/**
- * Main Dashboard Layout — Runway spec:
- * Max-width 1200px centered content column with full-bleed Cream Canvas background.
- * Left column: History panel (sidebar nav style)
- * Right columns: Chatbot panel (main content)
- */
 const DashboardLayout = () => {
   return (
     <div
@@ -20,13 +14,9 @@ const DashboardLayout = () => {
         flexDirection: 'column',
       }}
     >
-      {/* Announcement bar */}
       <AnnouncementBanner />
-
-      {/* Navigation header */}
       <NavigationHeader />
 
-      {/* Main content */}
       <main
         style={{
           flex: 1,
@@ -40,18 +30,15 @@ const DashboardLayout = () => {
           alignItems: 'start',
         }}
       >
-        {/* Left column — History sidebar */}
         <aside style={{ position: 'sticky', top: '100px' }}>
           <HistoryPanel />
         </aside>
 
-        {/* Right column — AI Chat panel */}
         <section style={{ minHeight: 'calc(100vh - 200px)' }}>
           <ChatbotPanel />
         </section>
       </main>
 
-      {/* Footer */}
       <footer
         style={{
           borderTop: '1px solid #e3dfd5',

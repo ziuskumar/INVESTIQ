@@ -1,10 +1,6 @@
 import llm from './langchain';
 import { getCompanyProfile, getRecentNews } from './dataFetcher';
 
-/**
- * Run decision chain to generate a highly detailed, structured investment report.
- * Instructs the LLM to output a clean, parsable JSON structure.
- */
 export async function runDecisionChain(company: string) {
   const [profile, news] = await Promise.all([
     getCompanyProfile(company),
@@ -55,14 +51,12 @@ The JSON must follow this exact structure:
     const raw = await llm.call(prompt);
     let cleanJson = raw.trim();
 
-    // Remove markdown code blocks if the LLM wrapped it in ```json ... ```
     if (cleanJson.startsWith('```')) {
       cleanJson = cleanJson.replace(/^```(?:json)?/i, '').replace(/```$/i, '').trim();
     }
 
     const data = JSON.parse(cleanJson);
     
-    // Normalize properties
     return {
       companyName: data.companyName || profile.name,
       ticker: data.ticker || profile.ticker,
@@ -77,7 +71,6 @@ The JSON must follow this exact structure:
   } catch (err) {
     console.error("JSON parsing of LLM response failed, using robust text fallback:", err);
     
-    // Fallback: Generate mock structured data if model fails to output valid JSON
     const decision = company.toLowerCase() === 'tesla' || company.toLowerCase() === 'netflix' ? 'Pass' : 'Invest';
     return {
       companyName: profile.name,

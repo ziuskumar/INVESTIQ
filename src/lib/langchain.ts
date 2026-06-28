@@ -1,15 +1,9 @@
-/**
- * LLM abstraction with explicit typing.
- * Supports Gemini API Key via direct fetch, OpenAI via @langchain/openai,
- * and falls back to a realistic mock response for demo purposes.
- */
 interface LLM {
   call(prompt: string): Promise<string>;
 }
 
 let llm: LLM;
 
-// Helper to generate a realistic mock response when no API key works
 function getMockResponse(prompt: string): string {
   const companyMatch = prompt.match(/Company:\s*(.+?)\n/);
   const company = companyMatch ? companyMatch[1] : 'the company';
@@ -40,7 +34,6 @@ While market volatility remains a factor, the company's diversified portfolio an
 const geminiApiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 
 if (geminiApiKey) {
-  // Use Gemini API directly via fetch (using gemini-2.5-flash model)
   llm = {
     async call(prompt: string): Promise<string> {
       try {
